@@ -12,25 +12,23 @@ var Stack = function() {
 
 
 var stackMethods = {
-  // add push
+
   push: function (value) {
     this.storage[this.counter] = value;
     this.counter++;
   },
-    // adding to storage
-    // increasing counter
 
-  // add pop
-    // decrease counter
-    // delete object
+  pop: function () {
+    if (Object.keys(this.storage).length !== 0) {
+      var value = this.storage[this.counter - 1];
+      delete this.storage[this.counter - 1];
+      this.counter--;
+      return value;
+    }
+  },
 
-    // return object being popped off the top
-
-  // add size
   size: function() {
-    // return object.keys...
     return Object.keys(this.storage).length;
   }
-
 
 };
