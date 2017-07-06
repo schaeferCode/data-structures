@@ -14,8 +14,13 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    // decrease size
-    // increase indextoRemove
+    if (Object.keys(storage).length !== 0) {
+      var result = storage[indexToRemove];
+      delete storage[indexToRemove];
+      indexToRemove++;
+      // increase indextoRemove
+      return result;
+    }
   };
 
   someInstance.size = function() {
@@ -24,3 +29,6 @@ var Queue = function() {
 
   return someInstance;
 };
+
+
+
