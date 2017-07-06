@@ -3,16 +3,14 @@ var Queue = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
-  // indexToRemove = 1
-  // size
-
+  var indexToRemove = 0;
+  var indexToAdd = 0;
 
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    index++
-    //index to add
-    //increase size
+    storage[indexToAdd] = value;
+    indexToAdd++;
   };
 
   someInstance.dequeue = function() {
