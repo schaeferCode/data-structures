@@ -3,8 +3,8 @@ var Queue = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
-  var index = 0;
-  var size = 0 + index;
+  var indexToRemove = 0;
+  var size = 0 + indexToRemove;
 
   // Implement the methods below
 
@@ -14,11 +14,12 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    size = size - 1 + index;
+    indexToRemove++;
+    size = size - 1 + indexToRemove;
     if (size < 0) {
-      size = 0 + index;
+      size = 0 + indexToRemove;
     }
-    return storage[size];
+    return storage[indexToRemove - 1];
   };
 
   someInstance.size = function() {
