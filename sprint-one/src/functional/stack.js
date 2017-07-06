@@ -12,7 +12,6 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
-    debugger;
     counter--;
     if (counter < 0) {
       counter = 0;
