@@ -17,15 +17,15 @@ var LinkedList = function() {
     }
 
     list.tail = list[counter];
-    console.log(list.tail.value, list[counter]);
+
     counter++;
   };
 
   list.removeHead = function() {
-    // similar to pop returns removed head
-    // var result = node[list.head];
-    // list.head = node.next;
-    // return result;
+
+    var result = list.head;
+    list.head = list.head.next;
+    return result;
   };
 
   list.contains = function(target) {
