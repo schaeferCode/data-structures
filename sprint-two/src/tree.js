@@ -6,8 +6,6 @@ var Tree = function(value) {
   newTree.children = [];
   _.extend(newTree, treeMethods);
 
-  // create extend function here to include treeMethods
-
   return newTree;
 };
 
@@ -15,6 +13,7 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   // insert new tree object into newTree.children [{value: 4, children[]]
+  this.children.push(Tree(value));
 };
 
 treeMethods.contains = function(target) {
