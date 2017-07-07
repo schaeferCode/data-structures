@@ -3,6 +3,7 @@ var LinkedList = function() {
   list.head = null; // null ought to be first value
   list.tail = null; // null ought to be last value in storage
   var counter = 0;
+  var deleteCounter = 0;
 
   list.addToTail = function(value) {
 
@@ -22,16 +23,22 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
-
-    var result = list.head;
+    var result = list.head.value;
     list.head = list.head.next;
+    // // console.log(list[deleteCounter]);
+    // delete list[deleteCounter];
+    deleteCounter++;
     return result;
   };
 
   list.contains = function(target) {
-    // does the list have the target? Return true or false
-    // Create recursive function or simple for in loop to iterate through looking for target
-    // return true or false
+
+    for (var i = deleteCounter; i < counter; i++) {
+      if (list[i].value === target) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return list;
