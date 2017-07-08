@@ -71,9 +71,9 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
-  // {0: {value: 2, edge: [3]}
-  // 1: {value: 1, edge: []}
-  // 2: {value: 3, edge: [2]}
+  // {0: {value: 4, edge: [5]}
+  // 1: {value: 5, edge: [4]}
+  // 2: {value: null, edge: []}
 
   // for in loop to find fromNode key.value.
   //    Check if key.value === fromNode
@@ -94,6 +94,25 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+
+  if (this.hasEdge(fromNode, toNode)) {
+    // Iterate/for in loop
+    //   if this key's value equals fromNode (this[key].value === fromNode)
+    //     get toNode's index in the edge's array (using indexOf)
+    //       use the index to splice and delete toNode's edge (array.splice(index, 1))
+    //   if this key's value equals toNode (this[key].value === toNode)
+    //     get fromNode's index in the edge's array (using indexOf)
+    //       use the index to splice and delete toNode's edge (array.splice(index, 1))
+
+    for (var key in this) {
+      if (this[key].value === fromNode) {
+        this[key].edge.splice(_.indexOf(this[key].edge, toNode), 1);
+      }
+      if (this[key].value === toNode) {
+        this[key].edge.splice(_.indexOf(this[key].edge, fromNode), 1);
+      }
+    }
+  }
 };
 
 // Pass in a callback which will be executed on each node of the graph.
