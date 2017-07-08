@@ -22,7 +22,7 @@ Graph.prototype.contains = function(node) {
   var foundIt = false;
 
   for (var key in this) {
-    if(this[key].value === node) {
+    if (this[key].value === node) {
       foundIt = true;
     }
   }
@@ -42,17 +42,54 @@ Graph.prototype.removeNode = function(node) {
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
+  // throw all in function
+  // variable false;
+
+  // var bothTrue = 0;
+  // Iterate/for in loop through the Graph
+  //   Look for fromNode (if (this[key].value === fromNode))
+  //      Check if fromNode.edge has indexOf toNode, if true, bothTrue++
+  //   Look for toNode
+  //      Check if toNode.edge has indexOf fromNode , if true, bothTrue++
+
+  var bothTrue = 0;
+
+  for (var key in this) {
+    if (this[key].value === fromNode) {
+      if (_.indexOf(this[key].edge, toNode) >= 0) {
+        bothTrue++;
+      }
+    }
+    if (this[key].value === toNode) {
+      if (_.indexOf(this[key].edge, fromNode) >= 0) {
+        bothTrue++;
+      }
+    }
+  }
+  return bothTrue === 2;
 };
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
-  // {1: {value: node, edge: [2,3]}
-  // 2: {value: node, edge: [1,4]}
-  // 48: {value: {somethinghere}, edge }  // delete this line
-  // How do we access key 48??
-  // this[48] = {value: {someNode}, edge: []}
-  // If we have the value of an object, how do we get the key?
-  // Object.keys(this[i]).value === node;
+  // {0: {value: 2, edge: [3]}
+  // 1: {value: 1, edge: []}
+  // 2: {value: 3, edge: [2]}
+
+  // for in loop to find fromNode key.value.
+  //    Check if key.value === fromNode
+  //      if so add key.edge.push(toNode)
+  //    check if key.value === toNode
+  //       if so add key.edge.push(fromNode);
+
+  for (var key in this) {
+    if (this[key].value === fromNode) {
+      this[key].edge.push(toNode);
+    }
+    if (this[key].value === toNode) {
+      this[key].edge.push(fromNode);
+    }
+  }
+
 };
 
 // Remove an edge between any two specified (by value) nodes.
