@@ -14,18 +14,24 @@ var treeMethods = {};
 treeMethods.addChild = function(value) {
   // insert new tree object into newTree.children [{value: 4, children[]]
   this.children.push(Tree(value));
+  console.log(this.children);
 };
 
 treeMethods.contains = function(target) {
-  // base case
-  // check if top of tree's value equals target
+  var foundIt = false;
 
-  // if familymember.children.length > 0
-  // loop through tree's children
-  // recurse treeMethods.contains
-  //   if children's value equals target
-  //     return true
-  //   return false otherwise
+  if (this.value === target) {
+    foundIt = true;
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    if(this.children[i].contains(target)) {
+      foundIt = true;
+    }
+  }
+
+  return foundIt;
+
 };
 
 
