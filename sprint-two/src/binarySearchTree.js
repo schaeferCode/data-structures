@@ -37,24 +37,21 @@ BinarySearchTree.prototype.insert = function (value) {
 
 BinarySearchTree.prototype.contains = function (target) {
 
-
   var isFound = false;
 
-  function subContains (familyMember) {
-
-    if (familyMember !== null && familyMember.value === target) {
-      isFound = true;
-    }
-
-    if (familyMember !== null && target < familyMember.value) {
-      subContains(familyMember.left);
-    } else if (familyMember !== null && target > familyMember.value) {
-      subContains(familyMember.right);
-    }
-
+  if (this.value === target) {
+    isFound = true;
   }
 
-  subContains(this);
+  if (target < this.value && this.left) {
+    if (this.left.contains(target)) {
+      isFound = true;
+    }
+  } else if (target > this.value && this.right) {
+    if (this.right.contains(target)) {
+      isFound = true;
+    }
+  }
 
   return isFound;
 
